@@ -1,0 +1,112 @@
+{% load staticfiles %}
+{% load init_urls %}
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+	<script src="{% static 'news/js/jQuery-2.1.4.min.js' %}"></script>
+	<script src="{% static 'news/js/flexible.js' %}"></script>
+	<script src="{% static 'news/js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'news/js/swiper.jquery.min.js' %}"></script>
+	<link rel="stylesheet" href="{% static 'news/css/bootstrap.min.css' %}">
+	<link rel="stylesheet" href="{% static 'news/css/style.css' %}">
+	<link rel="stylesheet" href="{% static 'news/font-awesome-4.5.0/css/font-awesome.min.css' %}">
+	<link rel="stylesheet" href="{% static 'news/css/swiper.min.css' %}">
+</head>
+<body>
+	<div class="head">
+	  <div class="logo">
+	    <a href="">
+	      <img src="{% static 'news/img/logo.png' %}" class="img-responsive">
+	    </a>
+	  </div>
+	</div>
+	
+	<div class="nav">
+	  <a href="/">首页</a>
+      {% block cates %}
+        {% for c in cates %}
+	      <a href="{{ c.url }}">{{ c.categary }}</a>
+        {% endfor %}
+      {% endblock %}
+	</div>
+	
+	
+	
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+      {% block sliders_pic %}
+        {% for x in sliders %}
+      <div class="swiper-slide">
+        <img src="{{ x.slidepic.url }}" class="img-responsive">
+        <p>{{ x.title }}</p>
+      </div>
+        {% endfor %}
+      {% endblock %}
+    </div>
+    <!-- Add Pagination -->
+    <div class="swiper-pagination"></div>
+  </div>
+  
+  
+  
+  
+{% block sum_content %}
+  
+  {% for posts in postss %}
+  
+  <div class="topnews">
+    <div class="topnews-tit">
+      <a href= "{{ posts.top_news | categaryURL }}" class="topnews-local">{{ posts.top_news | categaryCate }}</a>
+    </div>
+	
+	
+    <div class="new-nav-box">
+      <div class="new-nav">
+        <div>置顶</div>
+        <div>
+          <a href={{ posts.top_news.id | urls}}> {{ posts.top_news.title }}</a>
+        </div>
+      </div>
+    </div>
+	
+	
+    <div class="topnew-slide">
+      <div class="topnew-slide-main">
+        <ul>
+			{% for post in posts.other_posts %}
+			  <li>
+				<a href = "{{post.id | urls}}" class="con">
+				  <div class="con-l">
+					<h3>{{ post.title }}</h3>
+				  </div>
+				  <div class="con-r">
+					<img src="{{ post.pic.url }}" class="img-responsive">
+				  </div>
+
+				</a>
+			  </li>
+			 {% endfor %}
+        </ul>
+      </div>
+    </div>
+    <div class="section-more-btn"><a href="{{ posts.top_news | categaryURL }}">查看更多</a></div>
+  </div>
+  
+  {% endfor %}
+{% endblock%}
+</body>
+
+<script>
+    var swiper = new Swiper('.swiper-container', {
+        pagination: '.swiper-pagination',
+        slidesPerView: 1,
+        paginationClickable: true,
+        spaceBetween: 30,
+        autoplay: 3000,
+        loop: true,
+    });
+</script>
+</html>

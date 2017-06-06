@@ -1,0 +1,117 @@
+{% load staticfiles %}
+{% load init_urls %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+	<script src="{% static 'news/js/jQuery-2.1.4.min.js' %}"></script>
+	<script src="{% static 'news/js/flexible.js' %}"></script>
+	<script src="{% static 'news/js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'news/js/swiper.jquery.min.js' %}"></script>
+	<link rel="stylesheet" href="{% static 'news/css/bootstrap.min.css' %}">
+	<link rel="stylesheet" href="{% static 'news/css/style.css' %}">
+	<link rel="stylesheet" href="{% static 'news/font-awesome-4.5.0/css/font-awesome.min.css' %}">
+	<link rel="stylesheet" href="{% static 'news/css/swiper.min.css' %}">
+</head>
+<body>
+  <div class="main">
+		<div class="sltit">
+		  <div class="wrap">
+		    <div class="row">
+		      <div class="col-xs-1 col-sm-1"><p class="col-l"><a href=""><i class="fa fa-angle-left fa-2x"></i></a></p></div>
+		      <div class="col-xs-10 col-sm-10">
+				<p class="col-c"> <a href = "/">清朗安全</a>
+				
+				{% block cate %}
+					<a href="{{cate.url}}"><span>{{cate.categary}}</span></a>
+				{% endblock %}
+				
+				</p></div>
+		      <div class="col-xs-1 col-sm-10"></div>
+		    </div>
+		  </div>
+		</div>
+		
+		<div class="nav1">
+		  <a href="/">首页</a>
+			
+	 {% block cates %}
+        {% for c in cates %}
+			{% if forloop.counter < 3 %}
+				<a href= "{{ c.url }}"> {{ c.categary }}</a>
+			{% else %}
+	      		<a href= "{{ c.url }}" name="navlist"> {{ c.categary }}</a>
+			{% endif %}
+		{% endfor %}
+      {% endblock %}
+			
+		  <a id="navfa"><i class="fa fa-angle-up fa-lg"></i></a>
+		</div>
+		
+		<div class="swiper-container">
+	    <div class="swiper-wrapper">
+
+	{% block sliders_pic %}
+        {% for x in sliders %}
+      <div class="swiper-slide">
+        <img src= "{{ x.slidepic.url }}" class="img-responsive">
+        <p>{{ x.title }}</p>
+      </div>
+        {% endfor %}
+      {% endblock %}
+	    </div>
+	    <!-- Add Pagination -->
+	    <div class="swiper-pagination"></div>
+	  </div>
+	  
+	  
+	  
+	  <div class="slbox wrap">
+	    <ul class="sllis">
+	{% block posts %}
+		{% for post in posts%}
+		  <li>
+	        <a href="{{post.id | urls}}" class="con1">
+		        <div class="con-r">
+	            <img src= {{post.pic.url}} class="img-responsive">
+	          </div>
+		        <div class="con-l">
+	            <h3>{{ post.title }}</h3>
+	          </div>
+		      </a>
+	      </li>
+		{% endfor %}
+	{% endblock %}		
+			
+	    </ul>
+	  </div>
+	</div>
+
+</body>
+<script>
+    var swiper = new Swiper('.swiper-container', {
+        pagination: '.swiper-pagination',
+        slidesPerView: 1,
+        paginationClickable: true,
+        spaceBetween: 30,
+        autoplay: 3000,
+        loop: true,
+    });
+
+    $(function(){
+    	$("a[name=navlist]").hide();
+    	$("#navfa").click(function() {
+    		if($(this).parent().find('a[name=navlist]').is(':hidden')){
+    			$(this).parent().find("a[name=navlist]").show();
+    			$(this).children().removeClass('fa-angle-up').addClass('fa-angle-down');
+    		}
+    		else{
+    			$(this).parent().find('a[name=navlist]').hide();
+    			$(this).children().removeClass('fa-angle-down').addClass('fa-angle-up');
+    		}
+      });
+  })
+
+</script>
+</html>

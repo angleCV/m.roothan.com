@@ -1,0 +1,120 @@
+{% load staticfiles %}
+{% load init_urls %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+	<script src="{% static 'news/js/jQuery-2.1.4.min.js' %}"></script>
+	<script src="{% static 'news/js/flexible.js' %}"></script>
+	<script src="{% static 'news/js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'news/js/swiper.jquery.min.js' %}"></script>
+	<link rel="stylesheet" href="{% static 'news/css/bootstrap.min.css' %}">
+	<link rel="stylesheet" href="{% static 'news/css/style.css' %}">
+	<link rel="stylesheet" href="{% static 'news/font-awesome-4.5.0/css/font-awesome.min.css' %}">
+	<link rel="stylesheet" href="{% static 'news/css/swiper.min.css' %}">
+</head>
+<body>
+	<div class="main">
+		<div class="sltit">
+		  <div class="wrap">
+		    <div class="row">
+		      <div class="col-xs-1 col-sm-1"><p class="col-l"><a href= "{{ cate.url }}" ><i class="fa fa-angle-left fa-2x"></i></a></p></div>
+			  
+			  {% block cate1 %}
+		      <div class="col-xs-10 col-sm-10"><p class="col-c"><a href="/"> 清朗安全 </a><span> <a href = "{{cate.url}}">{{ cate.categary }} </a></span></p></div>
+		      {% endblock %}
+			  
+			  <div class="col-xs-1 col-sm-10"></div>
+		    </div>
+		  </div>
+		</div>
+		
+		{% block content  %}
+		<div class="ls-content">
+		
+		  <h3> {{ gaim.title}} </h3>
+		  <p class="vice">{{ gaim.pub_date | date}}   来源: {{gaim.sourcefrom}}   作者: {{gaim.author}}</p>
+		  <div class="ls-txt">
+				{{ gaim.content| safe }}
+		  </div>
+		  
+		</div>
+		{% endblock %}
+		<div class="topnews ls-foot">
+	    <div class="topnews-tit">
+		{% block cate %}
+	      <a href = "{{cate.url}}" class="topnews-local">热点新闻</a>
+	    
+		{% endblock %}
+		</div>
+	    <div class="topnew-slide ">
+	      <div class="topnew-slide-main">
+	        <ul>
+			
+			{% block others%}
+			{% for post in other_posts %}
+			<li>
+	            <a href="{{post.id | urls}}" class="con">
+	              <div class="con-l">
+	                <h3>{{post.title}}</h3>
+	              </div>
+	              <div class="con-r">
+	                <img src="{{ post.pic.url }}" class="img-responsive">
+	              </div>
+	            </a>
+	          </li>
+			{% endfor %}
+			{% endblock %}
+			
+			<!--
+	          <li>
+	            <a href="" class="con">
+	              <div class="con-l">
+	                <h3>网络产品和服务安全审查办法 网络产品</h3>
+	              </div>
+	              <div class="con-r">
+	                <img src="img/01.jpg" class="img-responsive">
+	              </div>
+	            </a>
+	          </li>
+	          <li>
+	            <a href="" class="con">
+	              <div class="con-l">
+	                <h3>湖北网络安全领导干部培训班开班 蔡正红出席</h3>
+	              </div>
+	              <div class="con-r">
+	                <img src="img/02.jpg" class="img-responsive">
+	              </div>
+	            </a>
+	          </li>
+	          <li>
+	            <a href="" class="con">
+	              <div class="con-l">
+	                <h3>北京成立网络与信息安全信息通报中心</h3>
+	              </div>
+	              <div class="con-r">
+	                <img src="img/03.jpg" class="img-responsive">
+	              </div>
+	            </a>
+	          </li>
+	          <li>
+	            <a href="" class="con">
+	              <div class="con-l">
+	                <h3>工信部：主动融入网络强国战略目标</h3>
+	              </div>
+	              <div class="con-r">
+	                <img src="img/04.jpg" class="img-responsive">
+	              </div>
+	            </a>
+	          </li>
+			  -->
+	        </ul>
+	      </div>
+	    </div>
+    </div>
+	</div>
+</body>
+
+</html>
+

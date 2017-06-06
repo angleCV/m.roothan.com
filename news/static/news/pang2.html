@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+	<script src="js/jQuery-2.1.4.min.js"></script>
+	<script src="js/flexible.js"></script>
+	<script src='js/bootstrap.min.js'></script>
+	<script src="js/swiper.jquery.min.js"></script>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="font-awesome-4.5.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/swiper.min.css">
+</head>
+<body>
+  <div class="main">
+		<div class="sltit">
+		  <div class="wrap">
+		    <div class="row">
+		      <div class="col-xs-1 col-sm-1"><p class="col-l"><a href=""><i class="fa fa-angle-left fa-2x"></i></a></p></div>
+		      <div class="col-xs-10 col-sm-10"><p class="col-c">清朗安全<span>安全热点</span></p></div>
+		      <div class="col-xs-1 col-sm-10"></div>
+		    </div>
+		  </div>
+		</div>
+		<div class="nav1">
+		  <a href="">首页</a>
+		  <a href="">安全热点</a>
+		  <a href="">管理政策</a>
+		  <a href="" name="navlist">南方安全视角</a>
+		  <a href="" name="navlist">安全法治</a>
+		  <a href="" name="navlist">人才培养</a>
+		  <a href="" name="navlist">前沿技术</a>
+		  <a href="" name="navlist">趣味科普</a>
+		  <a href="" name="navlist">主题活动</a>
+		  <a href="" name="navlist">热点专题</a>
+		  <a id="navfa"><i class="fa fa-angle-up fa-lg"></i></a>
+		</div>
+		<div class="swiper-container">
+	    <div class="swiper-wrapper">
+	      <div class="swiper-slide">
+	        <img src="img/01.jpg" class="img-responsive">
+	        <p>清朗仿真培训系统受到政企领导的关注</p>
+	      </div>
+	      <div class="swiper-slide">
+	        <img src="img/02.jpg" class="img-responsive">
+	      </div>
+	      <div class="swiper-slide">
+	        <img src="img/03.jpg" class="img-responsive">
+	      </div>
+	      <div class="swiper-slide">
+	        <img src="img/04.jpg" class="img-responsive">
+	      </div>
+	    </div>
+	    <!-- Add Pagination -->
+	    <div class="swiper-pagination"></div>
+	  </div>
+	  <div class="slbox wrap">
+	    <ul class="sllis">
+	      <li>
+	        <a href="" class="con1">
+		        <div class="con-r">
+	            <img src="img/01.jpg" class="img-responsive">
+	          </div>
+		        <div class="con-l">
+	            <h3>网络产品和服务安全审查办法 网络产品</h3>
+	          </div>
+		      </a>
+	      </li>
+	      <li>
+	        <a href="" class="con1">
+		        <div class="con-r">
+	            <img src="img/02.jpg" class="img-responsive">
+	          </div>
+		        <div class="con-l">
+	            <h3>高考将至家长需防范四类网络诈骗</h3>
+	          </div>
+		      </a>
+	      </li>
+	      <li>
+	        <a href="" class="con1">
+		        <div class="con-r">
+	            <img src="img/03.jpg" class="img-responsive">
+	          </div>
+		        <div class="con-l">
+	            <h3>公安部指挥破获“2·17” 侵犯公民个人信息案</h3>
+	          </div>
+		      </a>
+	      </li>
+	      <li>
+	        <a href="" class="con1">
+		        <div class="con-r">
+	            <img src="img/04.jpg" class="img-responsive">
+	          </div>
+		        <div class="con-l">
+	            <h3>网络实名制全面到来，如何保障我们的虚拟空间更“清爽”</h3>
+	          </div>
+		      </a>
+	      </li>
+	      <li>
+	        <a href="" class="con1">
+		        <!-- <div class="con-r">
+	            <img src="img/01.jpg" class="img-responsive">
+	          </div> -->
+		        <div class="con-l">
+	            <h3>网络反恐形势严峻！G7峰会呼吁互联网巨头联合打击</h3>
+	          </div>
+		      </a>
+	      </li>
+	    </ul>
+	  </div>
+	</div>
+</body>
+<script>
+    var swiper = new Swiper('.swiper-container', {
+        pagination: '.swiper-pagination',
+        slidesPerView: 1,
+        paginationClickable: true,
+        spaceBetween: 30,
+        autoplay: 3000,
+        loop: true, 
+    });
+    
+    $(function(){
+    	$("a[name=navlist]").hide();
+    	$("#navfa").click(function() {
+    		if($(this).parent().find('a[name=navlist]').is(':hidden')){
+    			$(this).parent().find("a[name=navlist]").show();
+    			$(this).children().removeClass('fa-angle-up').addClass('fa-angle-down');
+    		}
+    		else{
+    			$(this).parent().find('a[name=navlist]').hide();
+    			$(this).children().removeClass('fa-angle-down').addClass('fa-angle-up');
+    		}
+      });
+  })
+    
+</script>
+</html>
